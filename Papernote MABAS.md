@@ -19,4 +19,6 @@ Few-shot learning is a general name for tasks in which people hope to train a ma
 ## 2. Innovative Designs
 A novel model-agnostic sample generation approach named **MABAS** (Model-Agnostic Boundary-Adversarial Sampling). 
 ### 2.1 Test-time Fine-tuning of Embedding Functions
-Since each meta-test task consists of the classes that are never seen during metatraining, it is a common approach in few-shot learning to fine-tuning the learned parameters using the support samples of the novel task. This work 
+Since each meta-test task consists of the classes that are never seen during metatraining, it is a common approach in few-shot learning to fine-tuning the learned parameters using the support samples of the novel task. This work aims at fine-tuning the learned parameters of the base few-shot learner adaptively to novel tasks but limited to update the parameters of the embedding function (or the feature extractor). 
+
+### 2.2 Fine-tuning by Boundary-Adversatial Samples
