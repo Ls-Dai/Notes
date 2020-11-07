@@ -21,3 +21,4 @@ This strategy augments D<sub>train</sub> by selecting samples with the target la
 
 
 #### 3.2 Transforming Samples from a Weakly Labeled or Unlabeled Data Set
+This stratgy 
