@@ -16,7 +16,7 @@
 \maketitle
 
 \section{General Discription of Few-shot}
-Paper link:\href{https://www.ecva.net/papers/eccv_2020/papers_ECCV/papers/123460579.pdf}{ECCV}
+Paper link:\href{https://www.ecva.net/papers/eccv_2020/papers_ECCV/papers/123460579.pdf}{ECCV 2020}
 \subsection{Few-shot problem}
 Few-shot learning is a general name for tasks in which people hope
 to train a machine learning model with just very small amount of data. \newline
@@ -53,10 +53,10 @@ $$
 \mathcal{L}^{adv}(\mathcal{S}, \phi) = 
 \frac{1}{\mathcal{S}} 
 \sum_((\textbf{x}, y) \in \mathcal{S})[
-    \frac{1}{K - 1} \sum_{k\prime \neq y} 
+    \frac{1}{K - 1} \sum_{k^{\prime} \neq y} 
         \{\alpha_{\textbf{x},y} - 
         \min{
-            m(\textbf{z}_{y, k\prime}^{adv}, y, k | \psi, \mathcal{S})
+            m(\textbf{z}_{y, k^{\prime}}^{adv}, y, k | \psi, \mathcal{S})
             } 
         \}_+
     ]
