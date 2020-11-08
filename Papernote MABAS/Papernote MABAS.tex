@@ -97,10 +97,26 @@ And here's an example of \textit{MetaOptNet}: \\
 \includegraphics[scale=0.6]{src/img/MetaOptNet2.jpg} \\
 
 \section{Experiment}
-\section{setup}
-dataset: \\
+\subsection{Setup}
+\subsubsection{Dataset}
 1. miniImageNet: consists of 100 classes each of which has 600 images with a size of 84 × 84 × 3. It adopts the same class split used by [36, 22]: 64, 16 and 20 classes for training, validation and the test, respectively. \\
 2. CIFAR-FS: splits all of the classes in CIFAR100 [20] into 64 training, 16 validation and 20 test sets, respectively. \\
 3. FC100: is another CIFAR100-based dataset. Classes are split into 60, 20 and 20 for training, validation and test, respectively. This class split is designed to minimize the overlap of information between all three subsets, to be more challenging than CIFAR-FS for few-shot learning. \\
- 
+\subsubsection{Embedding functions}
+ResNet-12, but for STL and MetaOptNet, different average pooling methods are applied in the last residual blocks. \\
+\subsubsection{Meta-training and meta-validation phase}
+For MetaOptNet- Proto, it uses a learning decay rate of 0.1 with a decay period of 15 epochs for simplicity. For the STL models, it trains for 100 epochs with a batch size of 256 and a learning rate of 0.001 using the cosine annealing decay. \\
+\subsubsection{Meta-test phase}
+5-way 5-shot and 5-way 1-shot classification tasks. Each meta-test run consists of 600 tasks sampled from $D^{test}$, and a single task contains 15 query samples per each of the 5 classes. \\
+\subsubsection{Boundary-adversarial fine-tuning}
+In all experiments, they update the embedding function for 150 steps and use the step-based learning rate decay with a decay rate of 0.8 and a period of 5. \\
+
+\subsection{
+    Result
+}
+\includegraphics[scale=0.6]{src/img/Table 1.jpg}
+\includegraphics[scale=0.6]{src/img/Table 234.jpg}
+\includegraphics[scale=0.6]{src/img/Fig2.jpg}
+
+
 \end{document}
