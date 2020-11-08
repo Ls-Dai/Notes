@@ -1,0 +1,51 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{url}
+\usepackage[colorlinks,linkcolor=red]{hyperref}
+
+\title{
+    {Paper Note}\\
+    {\large "Model-Agnostic Boundary-Adversarial Sampling for Test-Time Generalization in Few-Shot learning"}
+}
+\author{Lisen Dai}
+\date{Oct 2020}
+
+\begin{document}
+
+\maketitle
+
+\section{General Discription of Few-shot}
+Paper link:\href{https://www.ecva.net/papers/eccv_2020/papers_ECCV/papers/123460579.pdf}{ECCV}
+\subsection{Few-shot problem}
+Few-shot learning is a general name for tasks in which people hope
+to train a machine learning model with just very small amount of data. \newline
+
+\subsection{Previous Research}
+1. \textbf{Data augmentation}. Generating fake labaled data. \newline
+2. Distance metric methods. \newline
+3. Meta-learning methods. \newline
+
+\subsection{Limitations of data augmentation few-shot}
+1. Such methods learn to generate additional examples with the 
+meta-training set, and thus may not be effective if meta-test domains are far from the meta-training domain. \\
+2. Since they do not update the trained parameters of the base 
+classifier models at test time, they have no chance to correct the 
+errors that exist in the base classifiers (e.g. overfitting of the embedding functions to the meta-training set). \\
+3. These methods need to be re-trained for each base classifier 
+to generate fake labeled data optimal for the base model. \\
+
+\section{Innovative Designs}
+A novel model-agnostic sample generation approach named \textbf{MABAS} (Model-Agnostic Boundary-Adversarial Sampling). \\
+\subsection{Test-time Fine-tuning of Embedding Functions}
+Since each meta-test task consists of the classes that are never seen during metatraining, 
+it is a common approach in few-shot learning to fine-tuning the learned parameters using the
+support samples of the novel task. This work aims at fine-tuning the learned parameters of the
+base few-shot learner adaptively to novel tasks but limited to update the parameters of the
+embedding function (or the feature extractor). 
+\subsection{Fine-tuning by Boundary-Adversatial Samples}
+Once we have the adversatial samples, we can update the parameter $\phi$ of embedding function via \underline{gradient descent}. The fine-tuning loss $\mathcal{L}^{fine-tune}$ is defined as: \\
+$$
+\mathcal{L}^{fine-tune}(\mathcal{S}, \phi) := \mathcal{L}^{adv}(\mathcal{S}, \phi)+\eta \cdot \frac{1}{\mathcal{S}}
+$$
+\end{document}
