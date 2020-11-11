@@ -1,0 +1,76 @@
+\documentclass[10pt]{beamer}
+
+\usepackage[heading = true]{ctex}
+% \usepackage[colorlinks,linkcolor=red]{hyperref}
+
+\usepackage{graphicx}
+\usepackage{float}
+
+\usetheme[]{Rochester}
+
+\mode<presentation>
+
+\title{
+    {云服务器使用说明和相关规定}
+}
+\author{戴立森}
+\date{Nov 12, 2020}
+
+\begin{document}
+    \maketitle
+    \begin{frame}
+        \frametitle{云服务器概况}
+            \framesubtitle{云服务器配置、计费}
+
+            {\small
+            \begin{table}[h]
+                \centering
+                \caption{算力对比}\label{tab:tab1}
+                    \begin{tabular}{|c|c|c|c|}
+                        \hline
+                        显卡 & 算力（TFLOPS） & 显存（G） & 相对速度 \\
+                        \hline
+                        Titan XP（A534） & 10.97 & 12 & 1 \\
+                        \hline
+                        G4 （RTX2080） & 13.45 & 11 & 1.226 \\
+                        \hline
+                        Tesla T4 & 8.141 & 16 & 0.742 \\
+                        \hline
+                        Tesla P40 & 11.76 & 24 & 1.072 \\
+                        \hline
+                        Tesla P100 & 9.526 & 16 & 0.868 \\
+                        \hline
+                    \end{tabular}
+            \end{table}
+            }
+
+    \end{frame}
+
+
+    \begin{frame}
+        \frametitle{云服务器概况}
+            \framesubtitle{计费说明}
+
+            {\small
+            \begin{table}[h]
+                \centering
+                \caption{计费说明}\label{tab:tab1}
+                    \begin{tabular}{|p{0.4\columnwidth}|p{0.4\columnwidth}|}
+                        \hline
+                        项目 & 单位数量单位时间价格 \\
+                        \hline
+                        1块RTX2080显卡配上8核i5 CPU & 5.84金币/小时 \\
+                        \hline
+                        存储空间 & 最低80G，需要 0.02金币/小时。超过80G的部分增加量需为50G的倍数，每增加50G需要 0.015金币/小时，四舍五入保留两位小数 \\
+                        \hline
+                        传输带宽（按带宽计费） & 5M及以下时为每小时0.03金币/Mbps，多出5M的部分需要增加每小时 0.135金币/Mbps \\
+                        \hline
+                        传输带宽（按流量计费） & 0.78金币/G，带宽大小可自选，上限100Mpbs \\
+                        \hline
+                    \end{tabular}
+            \end{table}
+            }
+
+    \end{frame}
+
+\end{document}
