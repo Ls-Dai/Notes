@@ -2,4 +2,4 @@
 \beamer@sectionintoc {2}{开始使用云主机}{4}{0}{2}
 \beamer@sectionintoc {3}{并行计算}{6}{0}{3}
 \beamer@sectionintoc {4}{云服务器使用规则}{8}{0}{4}
-\beamer@sectionintoc {5}{相关材料}{11}{0}{5}
+\beamer@sectionintoc {5}{相关材料}{12}{0}{5}
