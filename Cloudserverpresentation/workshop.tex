@@ -1,3 +1,5 @@
+%!TEX program = xelatex
+
 \documentclass[10pt]{beamer}
 
 \usepackage[heading = true]{ctex}
@@ -5,13 +7,15 @@
 
 \usepackage{graphicx}
 \usepackage{float}
+% \usepackage[colorlinks, linkedcolor=red]{hyperref}
+
 
 \usetheme[]{Rochester}
 
 \mode<presentation>
 
 \title{
-    {云服务器使用说明和相关规定}
+    \href{https://github.com/Ls-Dai/Cloud-Sever-Tutorial}{云服务器使用说明和相关规定}
 }
 \author{戴立森}
 \date{Nov 12, 2020}
@@ -53,9 +57,9 @@
 
             {\small
             \begin{table}[h]
-                \centering
+                {\centering
                 \caption{计费说明}\label{tab:tab1}
-                    \begin{tabular}{|p{0.4\columnwidth}|p{0.4\columnwidth}|}
+                    \begin{tabular}{|p{0.2\columnwidth}|p{0.6\columnwidth}|}
                         \hline
                         项目 & 单位数量单位时间价格 \\
                         \hline
@@ -67,9 +71,18 @@
                         \hline
                         传输带宽（按流量计费） & 0.78金币/G，带宽大小可自选，上限100Mpbs \\
                         \hline
-                    \end{tabular}
+                    \end{tabular} \\
+                }
             \end{table}
+            {\tiny \qquad \qquad 注：金币和人民币换算比例为0.92}
             }
+
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{开始使用云主机}
+            \framesubtitle{演示：创建一个适合使用的云主机}
+            \href{}{}
 
     \end{frame}
 
