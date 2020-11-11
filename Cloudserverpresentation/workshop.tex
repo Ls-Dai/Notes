@@ -2,12 +2,39 @@
 
 \documentclass[10pt]{beamer}
 
-\usepackage[heading = true]{ctex}
+\usepackage[heading=true]{ctex}
 % \usepackage[colorlinks,linkcolor=red]{hyperref}
 
 \usepackage{graphicx}
 \usepackage{float}
 % \usepackage[colorlinks, linkedcolor=red]{hyperref}
+
+% for python
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{
+    frame=tb,
+    language=Python,
+    aboveskip=3mm,
+    belowskip=3mm,
+    showstringspaces=false,
+    columns=flexible,
+    basicstyle={\small\ttfamily},   
+    numbers=none,
+    numberstyle=\tiny\color{gray},
+    keywordstyle=\color{blue},
+    commentstyle=\color{dkgreen},
+    stringstyle=\color{mauve},
+    breaklines=true,
+    breakatwhitespace=true,
+    tabsize=3,
+}
+
 
 
 \usetheme[]{Rochester}
@@ -82,7 +109,97 @@
     \begin{frame}
         \frametitle{开始使用云主机}
             \framesubtitle{演示：创建一个适合使用的云主机}
-            \href{}{}
+
+            % \href{https://ai.blsc.cn/#/support/info}{
+            %     \includegraphics{src/img/Tweet.png}
+            %     }
+            \centering
+            \href{https://ai.blsc.cn/\#/support/info}{
+                \includegraphics[scale=0.2]{src/img/Welcome.png}
+                }
+
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{开始使用云主机}
+            \framesubtitle{演示：远程交互}
+
+            % \href{https://ai.blsc.cn/#/support/info}{
+            %     \includegraphics{src/img/Tweet.png}
+            %     }
+            \centering
+            \hyperlink{frame5}{
+                \includegraphics[scale=0.2]{src/img/MobaXterm.png}
+                }
+
+    \end{frame}
+
+    \begin{frame}[fragile]
+        \frametitle{并行计算(PyTorch)}
+            \framesubtitle{基本原理}
+                核心代码： \\
+                \begin{lstlisting}
+torch.nn.DataParallel                    
+                \end{lstlisting}
+                可将模型发送到多个GPU上进行并行计算，每个GPU都有一个模型的副本。\\
+                训练时，每一批 (batch) 的数据会被均匀地分配到所有GPU上进行处理，计算的梯度会被汇总到原始的模型中进行更新。\\
+                \hspace*{\fill}
+                \begin{itemize}
+                    \item 务必保证批的大小(batchsize)大于使用的GPU的数量。
+                    \item 在这个训练过程中，因为梯度会被汇总，所以不涉及改变批的大小(batchsize)的问题。
+                    \item 因为汇总梯度等原因，GPU(0)一般要被占用更多的显存。
+                \end{itemize}
+
+    \end{frame}
+
+    \begin{frame}[fragile]
+        \frametitle{并行计算(PyTorch)}
+            \framesubtitle{代码讲解}
+                % Python code
+                \begin{lstlisting}[basicstyle=\small]
+import torch.nn as nn
+                \end{lstlisting}
+                \begin{lstlisting}[basicstyle=\small]
+gpus = range(num_gpus)
+                \end{lstlisting}
+                \begin{lstlisting}[basicstyle=\small]
+torch.cuda.device_count
+                \end{lstlisting}
+                \begin{lstlisting}[basicstyle=\small]
+model = nn.DataParallel(model.cuda(), device_ids=gpus, output_device=gpus[0]) 
+                \end{lstlisting}
+
+                
+
+
+
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{云服务器使用规则}
+            \framesubtitle{基本信息管理}
+
+            % \href{https://ai.blsc.cn/#/support/info}{
+            %     \includegraphics{src/img/Tweet.png}
+            %     }
+            \centering
+            \href{https://ai.blsc.cn/\#/support/info}{
+                \includegraphics[scale=0.2]{src/img/Welcome.png}
+                }
+
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{云服务器使用规则}
+            \framesubtitle{使用操作流程}
+
+            % \href{https://ai.blsc.cn/#/support/info}{
+            %     \includegraphics{src/img/Tweet.png}
+            %     }
+            \centering
+            \href{https://ai.blsc.cn/\#/support/info}{
+                \includegraphics[scale=0.2]{src/img/Welcome.png}
+                }
 
     \end{frame}
 

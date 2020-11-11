@@ -1,0 +1,20 @@
+\frametitle{并行计算(PyTorch)}
+            \framesubtitle{代码讲解}
+                % Python code
+                \begin{lstlisting}[basicstyle=\small]
+import torch.nn as nn
+                \end{lstlisting}
+                \begin{lstlisting}[basicstyle=\small]
+gpus = range(num_gpus)
+                \end{lstlisting}
+                \begin{lstlisting}[basicstyle=\small]
+torch.cuda.device_count
+                \end{lstlisting}
+                \begin{lstlisting}[basicstyle=\small]
+model = nn.DataParallel(model.cuda(), device_ids=gpus, output_device=gpus[0])
+                \end{lstlisting}
+
+
+
+
+
