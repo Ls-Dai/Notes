@@ -216,6 +216,19 @@ model = nn.DataParallel(model.cuda(), device_ids=gpus, output_device=gpus[0])
 
         \end{frame}
 
+
+        \begin{frame}[fragile]
+            \frametitle{并行计算(PyTorch)}
+                \framesubtitle{演示：使用parallel运行代码}
+                    \centering
+                    \includegraphics[width=\linewidth]{src/img/RTX2080.jpeg}
+                    {\small  $ v: 1 \div 2 = \frac{1}{2} $ \\
+                    \$: $ 1 + 1 = 2 $ \\ 
+                    total : $ \frac{1}{2} \times 2 = 1 $}
+
+        \end{frame}
+
+
     \section{云服务器使用规则}
         \begin{frame}
             \frametitle{云服务器使用规则}
@@ -309,7 +322,7 @@ conda env create -f environment.yaml # 安装环境
                 \framesubtitle{使用操作流程简述}
 
                     \begin{itemize}
-                        \item [2. ]{在操作文档中填写下列信息：姓名，开始时间，预计结束时间，简要的任务说明。}
+                         \item [2. ]{在操作文档中填写下列信息：姓名，开始时间，预计结束时间，简要的任务说明。}
                         \item [3. ]{通过ip名找到上一次工作的机器，开机，进行运算（或者按需创建新机器）。}
                         \item [4. ]{结束运算，关机，在操作文档中填写下列信息: 实际结束时间。}
                         \item [5. ]{如果此次使用之后，删除主机，在操作文档中填写下列信息: 是否已删除主机。}
