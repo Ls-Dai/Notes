@@ -230,11 +230,55 @@ model = nn.DataParallel(model.cuda(), device_ids=gpus, output_device=gpus[0])
 
         \end{frame}
 
+        \begin{frame}[fragile]
+            \frametitle{云服务器使用规则}
+                \framesubtitle{使用操作流程简述}
+
+                    \lstset{
+                        frame=tb,
+                        language=bash,
+                        aboveskip=3mm,
+                        belowskip=3mm,
+                        showstringspaces=false,
+                        columns=flexible,
+                        basicstyle={\small\ttfamily},   
+                        numbers=none,
+                        numberstyle=\tiny\color{gray},
+                        keywordstyle=\color{blue},
+                        commentstyle=\color{dkgreen},
+                        stringstyle=\color{mauve},
+                        breaklines=true,
+                        breakatwhitespace=true,
+                        tabsize=3,
+                    }
+
+                    \begin{itemize}
+                        \item [1. ]{
+                            确保您的程序已经在A534机器上运行正常，并且已经利用pip或者conda生成环境配置文件。等待在云服务器上使用。\\
+                            \begin{lstlisting}
+#################### 原机器上 ####################
+pip freeze > requirements.txt   # 输出环境版本列表
+#################### 新机器上 ####################
+# conda create -n env_name    # 创建新的虚拟环境
+# source activate env_name    # 激活新建的虚拟环境
+pip install -r requirements.txt # 安装环境
+                            \end{lstlisting}
+                            
+                            \begin{lstlisting}
+conda env export > environment.yaml # 输出环境版本列表
+conda env create -f environment.yaml # 安装环境
+                            \end{lstlisting}
+                            {\small
+                            注：.yaml文件移植过来的环境只是安装了原来环境里用conda install等命令直接安装的包，而利用pip安装的东西没有移植过来，需要重新安装。 \\}
+                        }
+                    \end{itemize}
+        \end{frame}
+
         \begin{frame}
             \frametitle{云服务器使用规则}
                 \framesubtitle{使用操作流程简述}
+
                     \begin{itemize}
-                        \item [1. ]{确保您的程序已经在A534机器上运行正常，并且已经利用pip或者conda生成环境配置文件。等待在云服务器上使用。}
                         \item [2. ]{在操作文档中填写下列信息：姓名，开始时间，预计结束时间，简要的任务说明。}
                         \item [3. ]{通过ip名找到上一次工作的机器，开机，进行运算（或者按需创建新机器）。}
                         \item [4. ]{结束运算，关机，在操作文档中填写下列信息: 实际结束时间。}
@@ -246,6 +290,7 @@ model = nn.DataParallel(model.cuda(), device_ids=gpus, output_device=gpus[0])
                     {\large 欢迎大家提出意见。}
 
         \end{frame}
+
 
     \section{相关材料}
         \begin{frame}
