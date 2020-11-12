@@ -135,3 +135,6 @@ dmypy.json
 *.log
 *.out
 *.gz
+
+# Latex PDF output
+*.pdf 
