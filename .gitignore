@@ -143,3 +143,6 @@ dmypy.json
 
 # Latex PDF output
 *.pdf 
+
+# Mac aux file
+.DS_Store
