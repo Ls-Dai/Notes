@@ -135,6 +135,11 @@ dmypy.json
 *.log
 *.out
 *.gz
+# Latex middle files but...hidden?
+*.nav
+*.snm
+*.toc
+
 
 # Latex PDF output
 *.pdf 
