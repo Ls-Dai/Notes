@@ -139,6 +139,7 @@ dmypy.json
 *.nav
 *.snm
 *.toc
+*.vrb
 
 
 # Latex PDF output
