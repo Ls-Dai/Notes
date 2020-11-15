@@ -18,9 +18,7 @@ Two paper reading reports respectively on Few-shot learning and light model stru
 
 ## Week 9
 ### Paper Sharing
-Two paper reading reports respectively on Few-shot learning and light model structures. <br>
 1. [Model-Agnostic Boundary-Adversarial Sampling for Test-Time Generalization in Few-Shot learning](Papernote%20MABAS/Papernote%20MABAS.pdf) 
-2. [GhostNet: More Features from Cheap Operations](Papernote%20GhostNet/Papernote%20GhostNet.pdf) 
 <br>
 
 ### Summary & Plans
