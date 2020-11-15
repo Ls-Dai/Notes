@@ -3,6 +3,9 @@
 \usepackage[colorlinks, linkcolor=red, urlcolor=blue]{hyperref}
 \usepackage{graphicx}
 
+\usepackage{amsmath}
+\usepackage{amssymb}
+
 \title{
     {\normalsize Paper Note} \\
     {\large \href{https://openaccess.thecvf.com/content_CVPR_2020/papers/Wang_Semi-Supervised_Learning_for_Few-Shot_Image-to-Image_Translation_CVPR_2020_paper.pdf}{Semi-supervised Learning for Few-shot Image-to-Image Translation
@@ -26,8 +29,54 @@
             In this paper, they overcome this limitation and explore a novel setting, few-shot I2I translation
             in which only limited labeled data is available from the source classes during training. \\
         
-            \includegraphics[width=\linewidth]{src/img/Comparison between unpaired I2I translation scenarios.png} \\
-
-
+            \includegraphics[width=\linewidth]{src/img/Comparison between unpaired I2I translation scenarios.png} \\ 
+        
+    \section*{Contribution: SEMIT}
+        \subsection*{Model Overview}
+            The model architecture is shown as follows: \\
+            \includegraphics[width=\linewidth]{src/img/Model Architecture.png} \\
+            The total loss function is: \\
+            $$
+                \min_{P_{\phi}, A_{\eta}, M_{\omega}, G_{\Phi}} 
+                \max_{D_{\xi}} 
+                \lambda_a \mathcal{L}_a + 
+                \lambda_c \mathcal{L}_c + 
+                \lambda_r \mathcal{L}_r + 
+                \lambda_e \mathcal{L}_{ent} 
+            $$
+            Here, 
+            \begin{equation}
+                \begin{aligned}
+                    & P_{\phi} \ -\  Pose\ encoder \\
+                    & A_{\eta} \ -\  Appearance\ encoder \\
+                    & G_{\Phi} \ -\  Generator \\
+                    & M_{\omega} \ -\  Multilayer\ perceptron \\
+                    & \mathcal{L}_a \ -\  Adversarial\ loss \\
+                    & \mathcal{L}_c \ -\  Classfication\ loss (aux-GAN,\ to\ generate\ target-specific\ images) \\
+                    & \mathcal{L}_r \ -\  Reconstruction\ loss \\
+                    & \mathcal{L}_{ent} \ -\  Entropy\ regulation loss
+                \end{aligned}
+            \end{equation}
+        
+        \section*{Experiment}
+            \subsection*{Datasets}
+                \begin{itemize}
+                    \item Animals
+                    \item Birds
+                    \item Flowers
+                    \item Foods
+                \end{itemize}
+                Randomly, sample 25,000 source images from the training set and translate them to each target domain (not seen during training) \\
+                1, 5, 20-shot settings for the target set. \\
+            \subsection*{Evaluation}
+                IS (\textit{Inception Score}) \\
+                FID (\textit{Fréchet Inception Distance}) \\
+                Translation Accuracy (\href{https://arxiv.org/pdf/1905.01723.pdf}{evaluate whether a model is able to generate images of the target class})
+            
+            \subsection*{Representative Results}
+                \begin{figure}
+                    \includegraphics[width=\textwidth]{src/img/figure1.png} \\
+                    \includegraphics[width=\textwidth]{src/img/figure2.png} \\
+                \end{figure}
 
 \end{document}
