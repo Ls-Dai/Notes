@@ -30,18 +30,18 @@
         \frametitle{API 接口简述}
         \begin{itemize}
             \item[-]{
-                发帖操作
+                读取
                 \begin{enumerate}
-                    \item 利用社交媒体给出的接口，或者直接在网页上模拟人的交互，进行发帖操作。
-                    \item 利用社交媒体给出的接口，或者利用爬虫等抓取方式，获取网络上的信息以供后端处理。
+                    \item 调用开发者提供的接口读取
+                    \item 爬取网页内容
                 \end{enumerate}
                 \hspace*{\fill}\\
                 }
             \item[-]{
-                生成帖子
+                写入
                 \begin{enumerate}
-                    \item 利用已知\textbf{信息}生成新的信息
-                    \item 自动识别并且直接借用他人素材、链接，和现有的其他信息搭配
+                    \item 调用开发者提供的接口读取
+                    \item 爬取网页前置接口，分析，并且记录特征，调用之
                 \end{enumerate}
                 } 
         \end{itemize}
@@ -51,19 +51,19 @@
         \frametitle{信息生成}
         \begin{itemize}
             \item[-]{
-                发帖操作
-                \begin{enumerate}
-                    \item 利用社交媒体给出的接口，或者直接在网页上模拟人的交互，进行发帖操作。
-                    \item 利用社交媒体给出的接口，或者利用爬虫等抓取方式，获取网络上的信息以供后端处理。
-                \end{enumerate}
+                生成独立信息
+                \qquad 不依赖其他信息，仅仅依靠简单的信息（比如话题）创生出内容来。可以是一段文字，一个其他话题，一个图片，甚至是一个视频。\\
                 \hspace*{\fill} \\
                 }
             \item[-]{
-                生成帖子
-                \begin{enumerate}
-                    \item 利用已知\textbf{信息}生成新的信息
-                    \item 自动识别并且直接借用他人素材、链接，和现有的其他信息搭配
-                \end{enumerate}
+                生成依赖信息
+                \qquad 依赖其他信息，生成相关的“不抄袭”的信息，多见于模仿创作，或者文章、图片和视频“解读”式创作。 \\
+                \hspace*{\fill} \\
+                } 
+            \item[-]{
+                生成关联信息
+                \qquad 关联其他帖子，生成相关的“不抄袭”的信息，多见于评论，或者图片视频二次创作。 \\
+                \hspace*{\fill} \\
                 } 
         \end{itemize}
     \end{frame}
