@@ -20,6 +20,7 @@ Two paper reading reports respectively on Few-shot learning and light model stru
 ### Paper Sharing
 1. [Semi-supervised Learning for Few-shot Image-to-Image Translation](https://openaccess.thecvf.com/content_CVPR_2020/papers/Wang_Semi-Supervised_Learning_for_Few-Shot_Image-to-Image_Translation_CVPR_2020_paper.pdf) 
 <br>
+Note: [Paper note: SEMIT](https://github.com/Ls-Dai/Notes/blob/main/Papernote%20IoI%20Trans/SEMIT.pdf)
 
 ### Summary & Plans
 1. Work in this week:
