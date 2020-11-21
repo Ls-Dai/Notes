@@ -70,7 +70,12 @@
             \textbf{Initialization}\;
             $ num^+ \leftarrow top_{q}(\Delta \theta); num^- \leftarrow top_{q}(- \Delta \theta) $ \\
             $ \Psi^+ \leftarrow mean(num^+); \Psi^- \leftarrow mean(num^-) $ \\
-            \If{ $ \Psi^+ \le $ }{}
+            \If{ $ \Psi^+ \geq \Psi^- $ }{
+                \textbf{return} $ (\Delta \theta^* \leftarrow \Psi^+(\theta \geq \min(num^+))) $\;
+            }
+            \Else{
+                \textbf{return} $ (- \Delta \theta^* \leftarrow \Psi^-(\theta \geq \min(-num^-))) $\;
+            }
         \end{algorithm}
     
     \end{frame}
