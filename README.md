@@ -27,3 +27,16 @@ Note: [Paper note: SEMIT](https://github.com/Ls-Dai/Notes/blob/main/Papernote%20
 
 2. Plan for next week:
     * Survey on few-shot problems
+
+
+## Week 10
+### Paper Sharing
+1. [https://www.mdpi.com/2076-3417/10/8/2864](FedOpt: Towards Communication Efficiency and Privacy Preservation in Federated Learning)
+
+### Summary & Plans
+1. Work in this week:
+    * General reading about few-shot problems
+
+2. Plan for next week:
+    * Survey on few-shot problems
+
