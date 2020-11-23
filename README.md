@@ -31,12 +31,15 @@ Note: [Paper note: SEMIT](https://github.com/Ls-Dai/Notes/blob/main/Papernote%20
 
 ## Week 10
 ### Paper Sharing
-1. [https://www.mdpi.com/2076-3417/10/8/2864](FedOpt: Towards Communication Efficiency and Privacy Preservation in Federated Learning)
+1. [https://github.com/Ls-Dai/Notes/blob/main/Federated%20Learning/11/FedOpt.pdf](FedOpt: Towards Communication Efficiency and Privacy Preservation in Federated Learning)
 
 ### Summary & Plans
 1. Work in this week:
-    * General reading about few-shot problems
+    * General reading about federated learning - communication efficiency problems
+    * NLP Courses 
+    * Django Courses
+    * Tweeter API test
 
 2. Plan for next week:
-    * Survey on few-shot problems
+    * Not decided yet
 
