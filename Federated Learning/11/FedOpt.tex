@@ -1,4 +1,4 @@
-%! TEX program = pdflatex
+%! TEX program = xelatex
 
 \documentclass{beamer}
 
@@ -10,6 +10,11 @@
 % \usepackage{algpseudocode}  
 \usepackage{algorithm2e}
 
+\usepackage{cite}
+
+
+% Reference style
+\bibliographystyle{unsrt}
 
 \usetheme{Berkeley}
 
@@ -92,7 +97,7 @@
         throughout the learning process.”}}
 
         \begin{figure}[H]
-            \includegraphics[width=0.8\textwidth]{src/Algorithm2.png}
+            \includegraphics[width=0.8\textwidth]{src/img/Algorithm2.png}
         \end{figure}
 
     
@@ -109,7 +114,7 @@
         
 
         \begin{figure}[H]
-            \includegraphics[width=0.8\textwidth]{src/Algorithm3.png}
+            \includegraphics[width=0.8\textwidth]{src/img/Algorithm3.png}
         \end{figure}
 
     
@@ -125,7 +130,7 @@
         
 
         \begin{figure}[H]
-            \includegraphics[width=0.8\textwidth]{src/Communication_Eff.png}
+            \includegraphics[width=0.8\textwidth]{src/img/Communication_Eff.png}
         \end{figure}
 
     
@@ -141,10 +146,27 @@
         
 
         \begin{figure}[H]
-            \includegraphics[width=\textwidth]{src/Accuracy.png}
+            \includegraphics[width=\textwidth]{src/img/Accuracy.png}
         \end{figure}
 
     
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{
+            \href{https://www.mdpi.com/2076-3417/10/8/2864}{
+            FedOpt: Towards Communication Efficiency and
+            Privacy Preservation in Federated Learning
+            }
+        }
+        
+        % Reference below
+        % \bibliography{src/citations/ref.bib}
+        \href{https://www.mdpi.com/2076-3417/10/8/2864}{
+            \nocite{*}
+            \bibliography{src/citations/ref.bib}
+        }
+
     \end{frame}
 
 \end{document}
