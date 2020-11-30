@@ -1,0 +1,43 @@
+%! TEX program = xelatex
+
+\documentclass[10pt]{beamer}
+
+\usepackage[heading = true]{ctex}
+% \usepackage[colorlinks,linkcolor=red]{hyperref}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{ulem}
+
+\usepackage{subfiles}
+
+\usepackage{palatino}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows}
+
+\usetheme[]{AnnArbor}
+
+\mode<presentation>
+
+\title{
+    {自动发帖机器人调研}
+}
+\author{戴立森}
+\date{Nov 10, 2020}
+
+\begin{document}
+
+    \maketitle
+    \section*{任务概述}
+    \subfile{sections/Scenario.tex}
+    \section*{场景介绍}
+    \subfile{sections/Task.tex}
+    \section*{API例子}
+    \subfile{sections/API.tex}
+    \section*{信息}
+    \subfile{sections/Info.tex}
+    \section*{总结}
+    \subfile{sections/Summary.tex}
+
+        
+\end{document}

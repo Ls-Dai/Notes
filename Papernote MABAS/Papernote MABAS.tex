@@ -1,0 +1,126 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[colorlinks,linkcolor=red]{hyperref}
+\usepackage{graphicx}
+
+\title{
+    {Paper Note}\\
+    {\large "Model-Agnostic Boundary-Adversarial Sampling for Test-Time Generalization in Few-Shot learning"}
+}
+\author{Lisen Dai}
+\date{Oct 2020}
+
+\begin{document}
+
+\maketitle
+
+\section{General Discription of Few-shot}
+Paper link:\href{https://www.ecva.net/papers/eccv_2020/papers_ECCV/papers/123460579.pdf}{ECCV 2020}
+\subsection{Few-shot problem}
+Few-shot learning is a general name for tasks in which people hope
+to train a machine learning model with just very small amount of data. \newline
+
+\subsection{Previous Research}
+1. \textbf{Data augmentation}. Generating fake labaled data. \newline
+2. Distance metric methods. \newline
+3. Meta-learning methods. \newline
+
+\subsection{Limitations of data augmentation few-shot}
+1. Such methods learn to generate additional examples with the 
+meta-training set, and thus may not be effective if meta-test domains are far from the meta-training domain. \\
+2. Since they do not update the trained parameters of the base 
+classifier models at test time, they have no chance to correct the 
+errors that exist in the base classifiers (e.g. overfitting of the embedding functions to the meta-training set). \\
+3. These methods need to be re-trained for each base classifier 
+to generate fake labeled data optimal for the base model. \\
+
+\section{Innovative Designs}
+A novel model-agnostic sample generation approach named \textbf{MABAS} (Model-Agnostic Boundary-Adversarial Sampling). \\
+\subsection{Test-time Fine-tuning of Embedding Functions}
+Since each meta-test task consists of the classes that are never seen during metatraining, 
+it is a common approach in few-shot learning to fine-tuning the learned parameters using the
+support samples of the novel task. This work aims at fine-tuning the learned parameters of the
+base few-shot learner adaptively to novel tasks but limited to update the parameters of the
+embedding function (or the feature extractor). 
+\subsection{Fine-tuning by Boundary-Adversatial Samples}
+Once we have the adversatial samples, we can update the parameter $\phi$ of embedding function via \underline{gradient descent}. The fine-tuning loss $\mathcal{L}^{fine-tune}$ is defined as: \\
+$$
+\mathcal{L}^{fine-tune}(\mathcal{S}, \phi) := \mathcal{L}^{adv}(\mathcal{S}, \phi) + \eta \cdot \frac{1}{\mathcal{S}}\sum_{(\textbf{x},y)}\in\mathcal{S}{\Vert}f_{\phi}(\textbf{x}){Vert}^2,
+$$
+and, 
+$$
+\mathcal{L}^{adv}(\mathcal{S}, \phi) = 
+\frac{1}{\mathcal{S}} 
+\sum_((\textbf{x}, y) \in \mathcal{S})[
+    \frac{1}{K - 1} \sum_{k^{\prime} \neq y} 
+        \{\alpha_{\textbf{x},y} - 
+        \min{
+            m(\textbf{z}_{y, k^{\prime}}^{adv}, y, k | \psi, \mathcal{S})
+            } 
+        \}_+
+    ]
+$$
+where,
+$
+\alpha_{\textbf{x}, y} =
+\frac{1}{K - 1} 
+\sum_{k \neq y} 
+m 
+(\textbf{z}, y, k 
+|
+\phi,
+\mathcal{S}
+)
+$
+\\
+feature: not only prevents the exces- sive expansion 
+of the supports’ embedding space but also stabilizes 
+the updates of the embedding space.\\
+Below is an illustration picture of the MABAS method.\\
+\begin{center}
+    \includegraphics[scale=0.4]{src/img/MABAS Illustration.jpg}\\
+\end{center}
+
+\section{Other Applications of Few-shot}
+To show the flexibility and generality of our MABAS approach, 
+this paper applies it to three representative few-shot learning methods: \\
+1. MetaOptNet \\
+2. Few-Shot without Forgetting \\
+3. Standard Transfer Learning \\
+
+In each method, the paper give out the original equation of implementation 
+and then the three ways below about how to optimize it by MABAS: \\
+1. Boundary-adversarial fine-tuning. \\
+2. Variation. \\
+3. Setting of $\delta$ \\
+And here's an example of \textit{MetaOptNet}: \\
+\begin{center}
+    \includegraphics[scale=0.6]{src/img/MetaOptNet1.jpg} \\
+    \includegraphics[scale=0.6]{src/img/MetaOptNet2.jpg} \\
+\end{center}
+
+\section{Experiment}
+\subsection{Setup}
+    \subsubsection{Dataset}
+1. miniImageNet: consists of 100 classes each of which has 600 images with a size of 84 × 84 × 3. It adopts the same class split used by [36, 22]: 64, 16 and 20 classes for training, validation and the test, respectively. \\
+2. CIFAR-FS: splits all of the classes in CIFAR100 [20] into 64 training, 16 validation and 20 test sets, respectively. \\
+3. FC100: is another CIFAR100-based dataset. Classes are split into 60, 20 and 20 for training, validation and test, respectively. This class split is designed to minimize the overlap of information between all three subsets, to be more challenging than CIFAR-FS for few-shot learning. \\
+    \subsubsection{Embedding functions}
+ResNet-12, but for STL and MetaOptNet, different average pooling methods are applied in the last residual blocks. \\
+    \subsubsection{Meta-training and meta-validation phase}
+For MetaOptNet- Proto, it uses a learning decay rate of 0.1 with a decay period of 15 epochs for simplicity. For the STL models, it trains for 100 epochs with a batch size of 256 and a learning rate of 0.001 using the cosine annealing decay. \\
+    \subsubsection{Meta-test phase}
+5-way 5-shot and 5-way 1-shot classification tasks. Each meta-test run consists of 600 tasks sampled from $D^{test}$, and a single task contains 15 query samples per each of the 5 classes. \\
+    \subsubsection{Boundary-adversarial fine-tuning}
+In all experiments, they update the embedding function for 150 steps and use the step-based learning rate decay with a decay rate of 0.8 and a period of 5.
+\subsection{Result}
+\begin{center}
+    \includegraphics[scale=0.5]{src/img/Table 1.jpg}
+    \includegraphics[scale=0.5]{src/img/Table 234.jpg}
+    \clearpage
+    \includegraphics[scale=0.6]{src/img/Fig2.jpg}
+\end{center}
+
+
+\end{document}

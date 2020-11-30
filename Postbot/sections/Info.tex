@@ -1,0 +1,85 @@
+%! TEX program = xelatex
+
+\documentclass[../Postbot.tex]{subfiles}
+
+\begin{document}
+    \begin{frame}
+        \frametitle{信息生成}
+        通过实际应用层面的需求，可以看出，大的方面来说，一个“自动发帖机器人”需要有如下功能： \\
+        \begin{itemize}
+            \item 建立“用户画像”，针对自己的“兴趣、职业”，进行发帖等操作；
+            \item 建立“用户关注画像”，针对自己的“关注话题”，进行转帖等操作；
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{发帖信息生成}
+        \centering
+        根据“用户的兴趣和特点”建立初始的“用户画像”，并且，我们可以建立一个初始数据库，由此：\\
+        \hspace*{\fill}\\
+        \hspace*{\fill}\\
+        \begin{columns}
+            \begin{column}{.3\textwidth}
+                \centering
+                \begin{enumerate}
+                    \item 文字（内容或是话题）
+                    \item 图片
+                    \item 视频
+                \end{enumerate}
+            \end{column}
+            \begin{column}{.7\textwidth}
+                \begin{enumerate}
+                    \item 文字引用生成评论-NLP特征提取、NLP生成模型； \\
+                    \item 图片配文-图片特征提取、NLP生成模型； \\
+                    \item 视频配文-图片、视频特征提取，NLP生成模型； \\
+                    \item 经由图片的图片生成-GAN图像翻译； \\
+                    \item 经由文字的文字生成-NLP生成模型； \\
+                    \item 为自己的关注用户、关注话题和关注内容生成分类标签 \\
+                    \item @ 符合内容特征的关注用户 \\
+                \end{enumerate}
+            \end{column}
+        \end{columns}
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{用户画像完善}
+        \centering
+        在初始“用户画像”上，根据“关注点”和“（地区）热点”而收到信息：\\
+        \hspace*{\fill}\\
+        \hspace*{\fill}\\
+        \begin{columns}
+            \begin{column}{.3\textwidth}
+                \centering
+                接收到:
+                \begin{enumerate}
+                    \item 文字
+                    \item 图片
+                    \item 视频
+                    \item 整体贴子
+                \end{enumerate}
+            \end{column}
+            \begin{column}{.7\textwidth}
+                NLP特征提取、NLP生成模型、随机森林等等
+                \begin{enumerate}
+                    \item 根据文字、图片、视频的特征，是否加入数据库 \\
+                    \item 根据整体帖子的所有特征（内容、关注人群、热度、地区）综合，是否转帖 \\
+                    \item 根据整体帖子的所有特征（内容、关注人群、热度、地区）综合，是否进入关注组 \\
+                    \item 根据整体帖子的反馈，扩大“关注点” \\
+                    \item 根据其他用户和自己的“关注点”修改自己的用户画像 \\
+                    \item ... \\
+                \end{enumerate}
+            \end{column}
+        \end{columns}
+    \end{frame}
+
+    \begin{frame}
+        数据池说明 \\
+        \begin{itemize}
+            \item 内容库（文字（话题）、图片等）
+            \item 关注点库
+            \item 用户画像库（自己和其他）
+            \item ...
+        \end{itemize}
+    \end{frame}
+
+\end{document}
