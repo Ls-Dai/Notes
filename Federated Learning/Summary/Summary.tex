@@ -1,0 +1,30 @@
+%! TEX TS-program = xelatex
+\documentclass[12pt, a4paper]{article}
+
+\usepackage{ctex}
+\usepackage[margin=0.5in]{geometry}
+\usepackage{cite}
+
+\title{
+    联邦学习总结
+}
+\author{
+    曲俊全 戴立森
+}
+\date{
+    \today
+}
+
+\begin{document}
+    \maketitle
+    \section*{削减通信代价的主要算法}
+        \subsection*{Communication-Efficient Learning of Deep Networks from Decentralized Data\cite{mcmahan2017communicationefficient}, 2017}
+            FedAvg算法，在一次全局的聚合计算中能够加入更多的本地参数更新，但是计算代价增加了，在非IID用户中效果不好。
+        \subsection*{A Communication Efficient Collaborative Learning Framework for Distributed Features\cite{liu2020communication}}
+            和FedAvg算法类似，保证了在纵向联邦学习中的收敛。缺点是计算代价增加，如果全局聚合不频繁的话收敛会延迟。
+        \subsection*{Two-stream instabilities in a plasma\cite{1965AuJPh..18..271K}}
+            受迁移学习启发，提出的双流模型，在联邦学习中，固定全局模型，加速了模型的收敛速度。但是，计算代价增加，收敛会出现滞后现象。
+        \subsection*{Two-stream instabilities in a plasma\cite{1965AuJPh..18..271K}}
+            受迁移学习启发，提出的双流模型，在联邦学习中，固定全局模型，加速了模型的收敛速度。但是，计算代价增加，收敛会出现滞后现象。
+
+\end{document}

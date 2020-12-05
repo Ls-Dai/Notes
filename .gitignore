@@ -145,7 +145,7 @@ dmypy.json
 *.blg
 
 # Latex PDF output
-# *.pdf 
+*.pdf 
 
 # Mac aux file
 .DS_Store
