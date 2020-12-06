@@ -35,7 +35,13 @@
         \subsection*{CMFL: Mitigating Communication Overhead for Federated Learning\cite{8885054}}
             和上一个全局模型比较时，选择执行具有较高相关性分数的局部模型更新的那些通信。但是，当全局的更新聚合频繁度降低时，很难实现这个模型。
 
-    \subsection*{优化资源分配的主要算法}
+        \subsection*{Personalized Federated Learning: A Meta-Learning Approach}
+            用meta-learning的方法解决数据non-iid的问题。给MAML套了一个联邦学习的壳。
+        \subsection*{Federated Learning with Matched Averaging}
+            作者讨论了FedAvg效果不好的原因，并提出了改进措施。以全连接神经网络为例：X是input，是一个m*1的向量，m为sample的数量。Y是targets，是一个m*1的向量。考虑只有一个隐藏层的情况，将每个y关于x的式子写出来，可以发现网络参数不是固定的，可以有很多中排列组和的参数达到相同的效果。
+
+            这就启示我们联邦学习中每个客户端的模型可能类似的，直接平均可能不会带来好的效果。所以要先将它们变为统一的排列，也就是要算出每个客户端的排列矩阵。文中求解的方法是BBP-MAP：maximum aposteriori estimate (MAP) 、BetaBernoulli process (BBP) 
+    \section*{优化资源分配的主要算法}
         \subsection*{Client Selection for Federated Learning with Heterogeneous Resources in Mobile Edge\cite{216799}}
             FedCS算法根据用户的计算能力选择用户，提高联邦学习的完成速度。但是，对于复杂的模型来说，其实际的训练时间无法估计得十分精准        
         \subsection*{Efficient Training Management for Mobile Crowd-Machine Learning: A Deep Reinforcement Learning Approach\cite{8716527}}
@@ -51,7 +57,7 @@
         \subsection*{Adaptive Federated Learning in Resource Constrained Edge Computing Systems\cite{wang2019adaptive}}
             引入非同步的联邦学习，任何情况下，当本地上传更新后的参数时，中心模型开始集成过程。缺点：对于非IID和不平衡的数据集来说，其收敛的滞后非常大
             
-    \subsection*{基于联邦学习框架下的攻击和防御机制}
+    \section*{基于联邦学习框架下的攻击和防御机制}
         \subsection*{Deep Learning with Differential Privacy\cite{Abadi_2016}}
             差分私有随机梯度下降：通过使用差分隐私随机保护机制，将“噪声”添加到训练参数中。
         \subsection*{Differentially Private Federated Learning: A Client Level Perspective\cite{geyer2018differentially}}
@@ -73,6 +79,66 @@
         \subsection*{Blockchained On-Device Federated Learning\cite{kim2019blockchained}}
             受迁移学习启发，提出的双流模型，在联邦学习中，固定全局模型，加速了模型的收敛速度。但是，计算代价增加，收敛会出现滞后现象。
 
+    \section*{聚合方法}
+        \subsection*{Learning Private Neural Language Modeling with Attentive Aggregation}
+            联邦学习中服务器端参数聚合问题：
+
+            （1）传统的方法中服务器端只是简单地平均汇总的参数，忽视了客户端重要性的不同。（2）服务器端对于学习一个好的全局模型没有一个优化机制。
+
+            此文提出了一个新的聚合参数的方法，引入了注意力机制。根据全局模型和客户端模型每层的相似度计算注意力权重并给出了损失函数和梯度的推导。
+        \subsection*{Asynchronous Federated Learning for Geospatial Applications}
+            联邦学习中参数同步聚合会导致一些终端由于计算效率低等原因拖累整个学习过程。
+
+            本文提出了非同步的参数聚合方式，通过终端的数据量、训练时间、损失等方面计算一个权重$ \eta $，$ \eta $决定了全局模型中吸收多少终端的优化。
+
+        \subsection*{Asynchronous Federated Optimization}
+            同上，对于同步聚合参数问题提出了非同步方法。证明了非同步参数聚合方法是收敛的。
+
+        \subsection*{LoAdaBoost: Loss-Based AdaBoost Federated Machine Learning on medical data}
+            从客户端计算复杂度、通信成本，和测试准确率三个方面考虑优化FedAvg中的参数聚合问题。提出了LoAdaBoost FedAvg。每轮全局训练中，下发的模型是上一轮的平均权重，如果客户端本地在E/2轮（计划训练E epochs）即达到上一轮损失的平均值，那么停止训练，否则继续训练，知道损失达标或继续训练的轮数达到E（训练总数最高1.5E）
+            
+        \subsection*{SCAFFOLD: Stochastic Controlled Averaging for Federated Learning}
+            针对non-iid情况下，FedAvg会使得全局模型逐渐偏离最佳模型，也就是文中的client drift。为了应对这种client drift，提出了本文的方法。方法是在本地更新模型时，$ y= y + 学习率(梯度+C) $ $ C $是文中提出来的用于控制client drift的变量。文中也给出了客户端的C和全局的C的更新方法。
+            简单来说比较每次local update中全局模型在本地数据上的梯度和全部客户端上的梯度差异，差异大模型变化大，需要遏制。
+            与FedProx等方法相比，此方法没有直接在loss func上做文章，而是在loss func的下一步——更新模型时做了文章。
+
+    \section*{迁移学习}
+        \subsection*{How transferable are features in deep neural networks?}
+        讨论迁移学习中哪一部分网络可以迁移，哪一部分不可以迁移。有两个相似的任务AB，将A的前n层拿出来，后面的网络使用随机初始化的参数，观察n变化时网络准确率变化。
+
+        文中发现alexnet 前2层提取的是gernal的特征，后面提取的是specific的特征。同时前两层+fine-tune的效果甚至可以超过原有的网络
+
+    \section*{联邦学习 $ \times $ GAN}
+        \subsection*{Deep Models Under the GAN: Information Leakage from Collaborative Deep Learning}
+            GAN 攻击：攻击者把全局的分类网络取回来当成discriminator，就能训练出一个生成器，生成器可以生成和其他用户的数据集极为相似的内容。
+
+            防御网络：「Anti-GAN」：
+
+            一个WGAN模型来混淆$ V $的数据集$ X $。在$ V $利用本地数据$ X $训练本地模型之前，$ V $先使用WGAN来学习数据集$ X $的分布特征，然后生成一个伪数据集 $ X^\prime $，然后将这个伪数据集$ X^\prime $送入本地模型中训练。
+
+            新的损失函数经过推理后确定下来，可以保证伪数据集$ X^\prime $在数据分类上的特性和$ X $一致。
+
+            在新WGAN上加入了无监督学习机制，增加了G生成样本对于人类区分度（这些样本不失特征，但是让人类更加能够分辨出来）
+            G的损失计算：$ 𝐺^∗(𝑧^∗)=𝑎𝑟𝑔 \min_𝐺  \max_𝐷 𝑉_𝑊 (𝐷,𝐺)+\min_(𝐺,𝑧) [\lambda_1 \mathcal{L}_{sim}−\lambda_2 \mathcal{L}_{obf} ] $
+        \subsection*{MD-GAN: Multi-Discriminator Generative Adversarial Networks for Distributed Datasets}
+        \subsection*{Federated Generative Adversarial Learning}
+            建立了联邦生成对抗学习的整体框架。
+            提出并且比较了四种将本地的G和D统一到中央模型的同步的方法：
+            \begin{itemize}
+                \item 同步D和G
+                \item 仅同步D
+                \item 仅同步G
+                \item 不同步
+            \end{itemize}
+            在提出的框架下，使用不同数据集的不同数据分布来研究训练质量
+        \subsection*{Exploiting Defenses against GAN-Based Feature Inference Attacks in Federated Learning}
+        \subsection*{Mitigating Sybils in Federated Learning Poisoning}
+            联邦学习投毒攻击的研究：数据投毒（故意给一个或者几个类别错误label）、模型投毒（故意上传错误模型）。
+        \subsection*{Multi-Discriminator GAN}
+            中心服务器部署生成器，各个用户训练判决器。
+            中心服务器给用户传输生成的图片，用户给中心服务器上传损失供中心服务器更新模型。
+            优点：本地负担减小。
+            缺点：假数据的传输占用带宽过大。
 
     \bibliographystyle{unsrt}
     \bibliography{ref.bib}
