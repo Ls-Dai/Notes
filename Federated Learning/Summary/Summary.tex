@@ -1,0 +1,80 @@
+%! TEX TS-program = xelatex
+\documentclass[12pt, a4paper]{article}
+
+\usepackage{ctex}
+\usepackage[margin=0.5in]{geometry}
+\usepackage{cite}
+
+\title{
+    联邦学习总结
+}
+\author{
+    曲俊全 戴立森
+}
+\date{
+    \today
+}
+
+\begin{document}
+    \maketitle
+    \section*{削减通信代价的主要算法}
+        \subsection*{Communication-Efficient Learning of Deep Networks from Decentralized Data\cite{mcmahan2017communicationefficient}, 2017}
+            FedAvg算法，在一次全局的聚合计算中能够加入更多的本地参数更新，但是计算代价增加了，在非IID用户中效果不好。
+        \subsection*{A Communication Efficient Collaborative Learning Framework for Distributed Features\cite{liu2020communication}}
+            和FedAvg算法类似，保证了在纵向联邦学习中的收敛。缺点是计算代价增加，如果全局聚合不频繁的话收敛会延迟。
+        \subsection*{Two-stream instabilities in a plasma\cite{1965AuJPh..18..271K}}
+            受迁移学习启发，提出的双流模型，在联邦学习中，固定全局模型，加速了模型的收敛速度。但是，计算代价增加，收敛会出现滞后现象。
+        \subsection*{Edge-Assisted Hierarchical Federated Learning with Non-IID Data\cite{unknown}}
+            受移动边缘计算启发，边缘服务器辅助联邦学习过程的中间参数聚合。但是也受到移动边缘计算的限制，网络扩张困难
+        \subsection*{Federated Learning: Strategies for Improving Communication Efficiency\cite{45648}}
+            本地上传参数至中心服务器时，结构化和轮廓化地更新参数，等效于压缩本地模型。但是，模型的准确度和收敛有缺陷        
+        \subsection*{Expanding the Reach of Federated Learning by Reducing Client Resource Requirements\cite{caldas2019expanding}}
+            本地从中心服务器下载参数时，结构化和轮廓化地更新参数，等效于压缩服务器模型。但是模型的准确度和收敛有缺陷
+        \subsection*{eSGD: Communication Efficient Distributed Deep Learning on the Edge\cite{216799}}
+            为了降低训练损失，给每一个通信更新过程一个重要度评分成绩，选择成绩更高的通信过程执行。但是这种算法仅仅有在经实验检验的在简单数据集上的测试，而且效果有所浮动        
+        \subsection*{CMFL: Mitigating Communication Overhead for Federated Learning\cite{8885054}}
+            和上一个全局模型比较时，选择执行具有较高相关性分数的局部模型更新的那些通信。但是，当全局的更新聚合频繁度降低时，很难实现这个模型。
+
+    \subsection*{优化资源分配的主要算法}
+        \subsection*{Client Selection for Federated Learning with Heterogeneous Resources in Mobile Edge\cite{216799}}
+            FedCS算法根据用户的计算能力选择用户，提高联邦学习的完成速度。但是，对于复杂的模型来说，其实际的训练时间无法估计得十分精准        
+        \subsection*{Efficient Training Management for Mobile Crowd-Machine Learning: A Deep Reinforcement Learning Approach\cite{8716527}}
+            利用深度强化学习，FL中的客户可决定资源消耗。但是，深度强化学习模型需要大量的用户参与才能训练好        
+        \subsection*{Resource Allocation in Mobility-Aware Federated Learning Networks: A Deep Reinforcement Learning Approach\cite{nguyen2019resource}}
+            应用深度强化学习，进行对移动性重视程度较强的FL客户的资源分配通信。但是，深度强化学习模型需要大量的用户参与才能训练好
+        \subsection*{Broadband Analog Aggregation for Low-Latency Federated Edge Learning\cite{8870236}}
+            利用BAA（宽带模拟聚合），通过利用多址信道的信号叠加特性来整合计算和通信
+        \subsection*{Federated Learning via Over-the-Air Computation\cite{8952884}}
+            在上一个算法的基础上，使用直流算法最小化聚合误差
+        \subsection*{Federated Learning over Wireless Fading Channels\cite{amiri2020federated}}
+            在第一个算法的基础上，通过考虑由于功率限制而未传输的梯度矢量，对算法做出了改进。但是，信号失真会导致准确性下降，当涉及大型异构网络时，其网络规模的扩张的受到阻碍。
+        \subsection*{Adaptive Federated Learning in Resource Constrained Edge Computing Systems\cite{wang2019adaptive}}
+            引入非同步的联邦学习，任何情况下，当本地上传更新后的参数时，中心模型开始集成过程。缺点：对于非IID和不平衡的数据集来说，其收敛的滞后非常大
+            
+    \subsection*{基于联邦学习框架下的攻击和防御机制}
+        \subsection*{Deep Learning with Differential Privacy\cite{Abadi_2016}}
+            差分私有随机梯度下降：通过使用差分隐私随机保护机制，将“噪声”添加到训练参数中。
+        \subsection*{Differentially Private Federated Learning: A Client Level Perspective\cite{geyer2018differentially}}
+            差异化的私人和选择性的参与者，在训练的参数中添加一定的噪声，并随机选择参与者来在每一轮训练中训练全局模型。
+        \subsection*{Privacy-preserving deep learning\cite{7447103}}
+            有选择性的参数共享：每个客户都选择要上传的梯度的数量和要更新的全局模型中的参数数量。
+        \subsection*{Boosting Privately: Privacy-preserving Federated Extreme Boosting for Mobile Crowd Sensing}
+            具有极端增强算法的秘密共享方案：这种方法在每次将新训练的模型以明文形式传输到服务器之前，先执行轻量级的秘密共享协议。
+        \subsection*{Federated Generative Privacy\cite{9091604}}
+            GAN模型训练：所有参与者都合作训练联合​​GAN模型。
+        \subsection*{Mitigating Sybils in Federated Learning Poisoning\cite{fung2020mitigating}}
+            基于更新的梯度，区分无恶意用户。实际上，联邦学习的用户所拥有的数据都是非IID的，每个用户的训练数据都有其自己的特征，恶意用户在上传时会上传和无恶意用户大相径庭的梯度。
+        \subsection*{Analyzing Federated Learning through an Adversarial Lens\cite{bhagoji2019analyzing}}
+            根据客户共享的更新模型，服务器可以检查共享模型是否有助于提高全局模型的性能。如果不能，客户将会给标记为潜在的攻击者。
+
+            在客户共享的更新后的模型之间进行比较，如果客户更新后的模型和其他人的差异太大，则可以给判定为潜在的攻击者。
+        \subsection*{On-device Federated Learning Via Blockchain and Its Latency Analysis}
+            BlockFL：通过利用区块链技术来交流和验证客户的本地学习模型的更新。每个客户都把训练后的模型发送给区块链网络中的相应矿工，然后根据他们训练的数据的贡献来取得其回报
+        \subsection*{Blockchained On-Device Federated Learning\cite{kim2019blockchained}}
+            受迁移学习启发，提出的双流模型，在联邦学习中，固定全局模型，加速了模型的收敛速度。但是，计算代价增加，收敛会出现滞后现象。
+
+
+    \bibliographystyle{unsrt}
+    \bibliography{ref.bib}
+
+\end{document}

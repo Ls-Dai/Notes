@@ -140,7 +140,13 @@ dmypy.json
 *.snm
 *.toc
 *.vrb
+<<<<<<< HEAD
 
+=======
+# bib
+*.bbl
+*.blg
+>>>>>>> b001e242acfcbd6840c97b74253dd268407975dc
 
 # Latex PDF output
 *.pdf 
